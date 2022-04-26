@@ -1,0 +1,55 @@
+{
+ "__default__":
+ {
+  "run_time" : "96:00",
+  "memory" : "14000",
+  "resources": "\"rusage[mem=14000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ },
+
+ "make_wac":
+ {
+  "memory" : "14000",
+  "run_time" : "01:10",
+  "resources": "\"rusage[mem=14000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ },
+
+ "subset_beds":
+ {
+  "memory" : "14000",
+  "run_time" : "01:05",
+  "resources": "\"rusage[mem=14000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ },
+
+ "pt2_tnt_counter":
+ {
+  "memory" : "15000",
+  "run_time" : "24:00",
+  "resources": "\"rusage[mem=15000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ },
+
+ "pt3_mut_count_obs":
+ {
+  "memory" : "14000",
+  "run_time" : "36:00",
+  "resources": "\"rusage[mem=14000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ },
+
+ "pt3_mut_count_BS":
+ {
+  "memory" : "14000",
+  "run_time" : "36:00",
+  "resources": "\"rusage[mem=14000]\"",
+  "output" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/",
+  "error" : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/log/"
+ }
+}

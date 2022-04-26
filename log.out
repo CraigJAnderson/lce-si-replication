@@ -1,0 +1,42 @@
+combining!
+
+------------------------------------------------------------
+Sender: LSF System <lsf@hh-yoda-01-08.ebi.ac.uk>
+Subject: Job 6268983: <over_lord> in cluster <YODA> Exited
+
+Job <over_lord> was submitted from host <hh-yoda-08-01.ebi.ac.uk> by user <cander21> in cluster <YODA>.
+Job was executed on host(s) <hh-yoda-01-08.ebi.ac.uk>, in queue <standard>, as user <cander21> in cluster <YODA>.
+</homes/cander21> was used as the home directory.
+</hps/nobackup2/flicek/user/cander21/strandAsym/release> was used as the working directory.
+Started at Results reported on 
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+snakemake -pr -j 800 --cluster "bsub -W 2:00 -M 4000 -R 4000 -e {cluster.error} -o {cluster.output} "
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   372.97 sec.
+    Max Memory :                                 16340 MB
+    Average Memory :                             7760.56 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               -340.00 MB
+    Max Swap :                                   16821 MB
+    Max Processes :                              3
+    Max Threads :                                4
+    Run time :                                   375 sec.
+    Turnaround time :                            375 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <log.error> for stderr output of this job.
+

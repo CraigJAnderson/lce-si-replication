@@ -1,0 +1,14 @@
+DIR : "test2"
+PTH : "/hps/nobackup2/flicek/user/cander21/strandAsym/release"
+RFD_VALUES : "/hps/nobackup2/flicek/user/cander21/strandAsym/repOri/rfd/c3h.consensus_OK-seq.1kb.bed" # a bed file with additional column for RFD score
+#RFD_INCREMENTS= ... have example #3 columns, uper and lower bound of RFD increment, followed by the midpoint reference in $3
+SAMPLE_LIST : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/c3h_new.nodList" #single column of sample names 
+FNOD_DRCR_MA_LOC : "/hps/nobackup2/flicek/user/lceCORE/nodules"
+VARIANT_CALLS_LOC : "/hps/nobackup2/flicek/user/cander21/lce20191105/share/ma/c3h/${NOD}/${NOD}.allele_count_bed"  ## this is how I tell if they're in phase, but this can be the same as /hps/nobackup2/flicek/user/lceCORE/nodules/${line}.nodMat 
+GENOME : "/hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa"
+GENE_ANNO : "/hps/nobackup2/flicek/user/cander21/strandAsym/filtered_variants2/expression/rfd_1kb.expression.no_overlap.bed"
+BIN : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/bin"
+RFD_LIST : "/hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt"
+VARIANT_PATH : "/hps/nobackup2/flicek/user/cander21/strandAsym/newrfd_filtered_variants"
+COMBINE : 1
+BOOTSTRAP : 520
