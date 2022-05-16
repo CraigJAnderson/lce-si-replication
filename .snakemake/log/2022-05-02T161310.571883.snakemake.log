@@ -1,0 +1,3 @@
+NameError in line 33 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
+name 'regions' is not defined
+  File "/hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile", line 33, in <module>

@@ -1,0 +1,3 @@
+TypeError in line 103 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
+must be str, not list
+  File "/hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile", line 103, in <module>

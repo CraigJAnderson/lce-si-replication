@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 66 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/WG_snakefile:
+Missing input files for rule pt2_tnt_counter:
+/hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/89985_N3.input.anno.wg.bed

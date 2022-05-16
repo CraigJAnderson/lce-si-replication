@@ -1,0 +1,2 @@
+SyntaxError in line 42 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
+Expected a descending order of rule names, e.g. rule1 > rule2 > rule3 ... (snakefile, line 42)

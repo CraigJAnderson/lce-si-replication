@@ -1,0 +1,3 @@
+FileExistsError in line 17 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
+[Errno 17] File exists: 'sample_specific_rfd_windows'
+  File "/hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile", line 17, in <module>

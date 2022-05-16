@@ -1,0 +1,236 @@
+Building DAG of jobs...
+Using shell: /usr/local/bin/bash
+Provided cluster nodes: 800
+Job counts:
+	count	jobs
+	1	all
+	1	make_wac
+	1	pt1_RFD_window_sorter
+	2	pt2_tnt_counter
+	6	pt3_mut_count_BS
+	2	pt3_mut_count_obs
+	2	subset_beds
+	15
+
+[Mon May  2 12:34:44 2022]
+rule make_wac:
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/wac/93244_N3.wac.bed
+    jobid: 1
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/wac/93244_N3.wac.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, nod=93244_N3
+
+awk -F"," '{print $3"\t"$6"\t"$7"\t"$15}' /hps/nobackup2/flicek/user/lceCORE/nodules/93244_N3.fnodDrcrMa | sed '/^$/d' | awk '{if ($4 >= 0.33) {print $1"\t"$2"\t"$3"\tW"} else if ($4 <= -0.33) print $1"\t"$2"\t"$3"\tC"}' | sort -k1,1V -k2,2g | grep -v chr > /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/wac/93244_N3.wac.bed
+Submitted job 1 with external jobid 'Job <6358622> is submitted to default queue <standard>.'.
+[Mon May  2 12:34:54 2022]
+Finished job 1.
+1 of 15 steps (7%) done
+
+[Mon May  2 12:34:54 2022]
+rule pt1_RFD_window_sorter:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/wac/93244_N3.wac.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed
+    jobid: 2
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/wac/93244_N3.wac.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, nod=93244_N3
+
+/hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt1_RFD_window_sorter.sh /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/cander21/strandAsym/repOri/rfd/c3h.consensus_OK-seq.1kb.bed 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/newrfd_filtered_variants
+Submitted job 2 with external jobid 'Job <6358637> is submitted to default queue <standard>.'.
+[Mon May  2 12:35:04 2022]
+Finished job 2.
+2 of 15 steps (13%) done
+
+[Mon May  2 12:35:04 2022]
+rule subset_beds:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    jobid: 4
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, nod=93244_N3, reg=nongenic
+
+ bedtools subtract -a /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed -b /hps/nobackup2/flicek/user/cander21/strandAsym/filtered_variants2/expression/rfd_1kb.expression.no_overlap.bed > /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed 
+Submitted job 4 with external jobid 'Job <6358647> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:04 2022]
+rule subset_beds:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    jobid: 3
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, nod=93244_N3, reg=genic
+
+ bedtools subtract -a /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.bed -b /hps/nobackup2/flicek/user/cander21/strandAsym/filtered_variants2/expression/rfd_1kb.expression.no_overlap.bed > /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed 
+Submitted job 3 with external jobid 'Job <6358648> is submitted to default queue <standard>.'.
+[Mon May  2 12:35:14 2022]
+Finished job 3.
+3 of 15 steps (20%) done
+
+[Mon May  2 12:35:14 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/bs2.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.2.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.2.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.2.W.mut
+    jobid: 11
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/bs2.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=genic, bs=2, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 11 with external jobid 'Job <6358655> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:15 2022]
+rule pt2_tnt_counter:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/93244_N3.rfd.COM.tnt_count
+    jobid: 5
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/93244_N3.rfd.COM.tnt_count; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=genic, nod=93244_N3, com=.COM
+
+ while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt2_tnt_counter.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+Submitted job 5 with external jobid 'Job <6358656> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:15 2022]
+rule pt3_mut_count_obs:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/bs0.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/93244_N3.rfd.0.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/93244_N3.rfd.0.W.mut
+    jobid: 7
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/bs0.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=genic, nod=93244_N3
+
+while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 0 1 0 genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+Submitted job 7 with external jobid 'Job <6358657> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:15 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/bs3.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/93244_N3.3.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/93244_N3.rfd.3.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/93244_N3.rfd.3.W.mut
+    jobid: 13
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs3/bs3.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=genic, bs=3, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 13 with external jobid 'Job <6358658> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:15 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/bs1.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/93244_N3.1.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/93244_N3.rfd.1.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/93244_N3.rfd.1.W.mut
+    jobid: 9
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs1/bs1.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.genic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=genic, bs=1, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 9 with external jobid 'Job <6358659> is submitted to default queue <standard>.'.
+[Mon May  2 12:35:24 2022]
+Finished job 4.
+4 of 15 steps (27%) done
+[Mon May  2 12:35:25 2022]
+Error in rule pt3_mut_count_obs:
+    jobid: 7
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/bs0.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/93244_N3.rfd.0.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs0/93244_N3.rfd.0.W.mut
+    shell:
+        while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 0 1 0 genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Job <6358657> is submitted to default queue <standard>.
+
+Error executing rule pt3_mut_count_obs on cluster (jobid: 7, external: Job <6358657> is submitted to default queue <standard>., jobscript: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/.snakemake/tmp.gtkir7hv/snakejob.pt3_mut_count_obs.7.sh). For error details see the cluster log and the log files of the involved rule(s).
+
+[Mon May  2 12:35:25 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/bs2.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/93244_N3.2.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/93244_N3.rfd.2.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/93244_N3.rfd.2.W.mut
+    jobid: 12
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs2/bs2.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=nongenic, bs=2, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 12 with external jobid 'Job <6358675> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:25 2022]
+rule pt2_tnt_counter:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/93244_N3.rfd.COM.tnt_count
+    jobid: 6
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/93244_N3.rfd.COM.tnt_count; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=nongenic, nod=93244_N3, com=.COM
+
+ while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt2_tnt_counter.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+Submitted job 6 with external jobid 'Job <6358676> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:25 2022]
+rule pt3_mut_count_obs:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/bs0.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/93244_N3.rfd.0.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/93244_N3.rfd.0.W.mut
+    jobid: 8
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/bs0.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=nongenic, nod=93244_N3
+
+while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 0 1 0 nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+Submitted job 8 with external jobid 'Job <6358677> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:25 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/bs3.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.3.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.3.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.3.W.mut
+    jobid: 14
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/bs3.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=nongenic, bs=3, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 14 with external jobid 'Job <6358678> is submitted to default queue <standard>.'.
+
+[Mon May  2 12:35:25 2022]
+rule pt3_mut_count_BS:
+    input: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/bs1.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.1.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.1.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.1.W.mut
+    jobid: 10
+    reason: Missing output files: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/bs1.93244_N3.mu; Input files updated by another job: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/sample_specific_rfd_windows/93244_N3.input.anno.nongenic.bed
+    wildcards: pth=/hps/nobackup2/flicek/user/cander21/strandAsym/release, dir=test, reg=nongenic, bs=1, nod=93244_N3
+
+ for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+Submitted job 10 with external jobid 'Job <6358679> is submitted to default queue <standard>.'.
+[Mon May  2 12:35:35 2022]
+Error in rule pt3_mut_count_obs:
+    jobid: 8
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/bs0.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/93244_N3.rfd.0.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs0/93244_N3.rfd.0.W.mut
+    shell:
+        while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 0 1 0 nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt 
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Job <6358677> is submitted to default queue <standard>.
+
+Error executing rule pt3_mut_count_obs on cluster (jobid: 8, external: Job <6358677> is submitted to default queue <standard>., jobscript: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/.snakemake/tmp.gtkir7hv/snakejob.pt3_mut_count_obs.8.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Mon May  2 12:35:45 2022]
+Error in rule pt3_mut_count_BS:
+    jobid: 11
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/bs2.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.2.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.2.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/bs2/93244_N3.rfd.2.W.mut
+    shell:
+         for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x genic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Job <6358655> is submitted to default queue <standard>.
+
+Error executing rule pt3_mut_count_BS on cluster (jobid: 11, external: Job <6358655> is submitted to default queue <standard>., jobscript: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/.snakemake/tmp.gtkir7hv/snakejob.pt3_mut_count_BS.11.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Mon May  2 12:35:45 2022]
+Finished job 5.
+5 of 15 steps (33%) done
+[Mon May  2 12:35:45 2022]
+Error in rule pt3_mut_count_BS:
+    jobid: 14
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/bs3.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.3.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.3.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs3/93244_N3.rfd.3.W.mut
+    shell:
+         for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Job <6358678> is submitted to default queue <standard>.
+
+Error executing rule pt3_mut_count_BS on cluster (jobid: 14, external: Job <6358678> is submitted to default queue <standard>., jobscript: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/.snakemake/tmp.gtkir7hv/snakejob.pt3_mut_count_BS.14.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Mon May  2 12:35:55 2022]
+Finished job 6.
+6 of 15 steps (40%) done
+[Mon May  2 12:35:55 2022]
+Error in rule pt3_mut_count_BS:
+    jobid: 10
+    output: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/bs1.93244_N3.mu, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.1.bed, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.W.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.C.tnt_count, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.1.C.mut, /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/nongenic/bs1/93244_N3.rfd.1.W.mut
+    shell:
+         for x in {1..3} ; do while read line ; do bits=($line) ; /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin/pt3_mut_count.sh ${bits[0]} ${bits[1]} ${bits[2]} 1 1 $x nongenic 93244_N3 /hps/nobackup2/flicek/user/cander21/strandAsym/release/bin /hps/nobackup2/flicek/user/cander21/strandAsym/release test /hps/nobackup2/flicek/user/lceCORE/genomes/c3h.arcMask.fa ; done < /hps/nobackup2/flicek/user/cander21/strandAsym/release/test_rfd.txt ; done
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Job <6358679> is submitted to default queue <standard>.
+
+Error executing rule pt3_mut_count_BS on cluster (jobid: 10, external: Job <6358679> is submitted to default queue <standard>., jobscript: /hps/nobackup2/flicek/user/cander21/strandAsym/release/test/.snakemake/tmp.gtkir7hv/snakejob.pt3_mut_count_BS.10.sh). For error details see the cluster log and the log files of the involved rule(s).
+Terminating processes on user request, this might take some time.
+Will exit after finishing currently running jobs.

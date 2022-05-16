@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in line 81 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
+Wildcards in input files cannot be determined from output files:
+'reg'
