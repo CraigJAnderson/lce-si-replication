@@ -3,3 +3,4 @@ test
 WG_combined_0.1
 bu_snakefile
 .snakemake
+.snakemake/log
