@@ -1,5 +1,0 @@
-Building DAG of jobs...
-ChildIOException:
-File/directory is a child to another output:
-/hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/93244_N3.rfd.COM.tnt_count
-/hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/93244_N3.rfd.COM.tnt_count/hps/nobackup2/flicek/user/cander21/strandAsym/release/test/genic/93244_N3.rfd.COM.tnt_count

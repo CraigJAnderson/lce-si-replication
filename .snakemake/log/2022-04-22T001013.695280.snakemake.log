@@ -1,3 +1,0 @@
-FileExistsError in line 7 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
-[Errno 17] File exists: '/hps/nobackup2/flicek/user/cander21/strandAsym/release/test2'
-  File "/hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile", line 7, in <module>

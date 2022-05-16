@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 45 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
-Missing input files for rule make_wac:
-/hps/nobackup2/flicek/user/lceCORE/nodules/#89985_N4.fnodDrcrMa

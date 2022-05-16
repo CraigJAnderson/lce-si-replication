@@ -1,3 +1,0 @@
-WildcardError in line 47 of /hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile:
-No values given for wildcard 'pth'.
-  File "/hps/nobackup2/flicek/user/cander21/strandAsym/release/snakefile", line 47, in <module>
