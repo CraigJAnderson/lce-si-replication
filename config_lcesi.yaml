@@ -3,7 +3,7 @@ PTH : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication"
 SAMPLE_LIST : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/src/sample_list.txt" #single column of sample names 
 FNOD_DRCR_MA_LOC : "/exports/igmm/eddie/taylor-lab/lceCORE/data/nodules"
 GENOME : "/exports/igmm/eddie/taylor-lab/lceCORE/data/genomes/c3h.arcMask.fa"
-GENE_ANNO : "/gpfs/igmmfs01/datastore/taylor-lab/craig/dojo/rfd_1kb.expression.no_overlap.bed"
+GENE_ANNO : "/gpfs/igmmfs01/datastore/taylor-lab/craig/dojo/rfd_1kb.expression.no_overlap.bed" ##just a bed
 BIN : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/bin"
 RFD_LIST : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/src/rfd_list.txt"
 VARIANT_PATH : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/variants"
