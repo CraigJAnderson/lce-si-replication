@@ -1,5 +1,11 @@
 # lce-si-replication
 
+set up the working environment
+<pre>
+conda env create -f lce-si.yml
+conda activate lce
+</pre>
+
 run the following to combine strands
 <pre>
 snakemake --snakefile WG_snakefile -pr -j 5
