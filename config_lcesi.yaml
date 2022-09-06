@@ -8,5 +8,4 @@ BIN : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/bin"
 RFD_LIST : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/src/rfd_list.txt"
 VARIANT_PATH : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/variants"
 RFD_VALUES : "/exports/igmm/eddie/taylor-lab/craig/bin/lce-si-replication/src/c3h.consensus_OK-seq.1kb.bed"
-COMBINE : 1
-BOOTSTRAP : 3
+BOOTSTRAP : 520
