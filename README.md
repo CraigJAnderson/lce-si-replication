@@ -8,12 +8,12 @@ conda activate lce
 
 run the following to combine strands
 <pre>
-snakemake --snakefile WG_snakefile -pr -j 5
+snakemake --snakefile WG_snakefile -pr -j 2
 </pre>
 
 run the following to run for watson and crick strands, separately
 <pre>
-snakemake --snakefile WVC_snakefile -pr -j 5
+snakemake --snakefile WVC_snakefile -pr -j 2
 </pre>
 
 If you're working with nodMat format from the other LCE work, use the following to reformat the list of variants
