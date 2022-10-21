@@ -21,13 +21,10 @@ sample_names = pd.read_table(config["SAMPLE_LIST"],sep=" ",header=None)
 sample_names.columns = ['nod']
 samples= list(sample_names.nod)
 
-<<<<<<< HEAD
 boots=int(config["BOOTSTRAP"])
 boots=boots+1
 BOOTS=list(range(1,boots))
 
-=======
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
 rule all:
  input:
   pt1 = expand("{pth}/{dir}/wac/{nod}.wac.bed", pth=config["PTH"], dir=config["DIR"], nod=samples), 
@@ -35,20 +32,11 @@ rule all:
   pt3 = expand("{pth}/{dir}/sample_specific_rfd_windows/{nod}.input.anno.genic.bed", nod=samples, pth=config["PTH"], dir=config["DIR"]),
   pt4 = expand("{pth}/{dir}/genic/{nod}.rfd.COM.tnt_count", nod=samples, pth=config["PTH"], dir=config["DIR"]),
   pt5 = expand("{pth}/{dir}/genic/bs0/bs0.{nod}.mu", nod=samples, pth=config["PTH"], dir=config["DIR"]),
-<<<<<<< HEAD
   pt6 = expand("{pth}/{dir}/genic/bs{bs}/bs{bs}.{nod}.mu", nod=samples, bs=BOOTS, pth=config["PTH"], dir=config["DIR"]),
   pt7 = expand("{pth}/{dir}/sample_specific_rfd_windows/{nod}.input.anno.nongenic.bed", nod=samples, pth=config["PTH"], dir=config["DIR"]),
   pt8 = expand("{pth}/{dir}/nongenic/{nod}.rfd.COM.tnt_count", nod=samples, pth=config["PTH"], dir=config["DIR"]),
   pt9 = expand("{pth}/{dir}/nongenic/bs0/bs0.{nod}.mu", nod=samples, pth=config["PTH"], dir=config["DIR"]),
   pt10 = expand("{pth}/{dir}/nongenic/bs{bs}/bs{bs}.{nod}.mu", nod=samples, bs=BOOTS, pth=config["PTH"], dir=config["DIR"]),
-=======
-  pt6 = expand("{pth}/{dir}/genic/bs{BS}/bs{BS}.{nod}.mu", nod=samples, BS=config["BOOTSTRAP"], pth=config["PTH"], dir=config["DIR"]),
-  pt7 = expand("{pth}/{dir}/sample_specific_rfd_windows/{nod}.input.anno.nongenic.bed", nod=samples, pth=config["PTH"], dir=config["DIR"]),
-  pt8 = expand("{pth}/{dir}/nongenic/{nod}.rfd.COM.tnt_count", nod=samples, pth=config["PTH"], dir=config["DIR"]),
-  pt9 = expand("{pth}/{dir}/nongenic/bs0/bs0.{nod}.mu", nod=samples, pth=config["PTH"], dir=config["DIR"]),
-  pt10 = expand("{pth}/{dir}/nongenic/bs{BS}/bs{BS}.{nod}.mu", nod=samples, BS=config["BOOTSTRAP"], pth=config["PTH"], dir=config["DIR"]),
-
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
   
 ruleorder: make_wac > pt1_RFD_window_sorter > subset_beds > pt2_tnt_counter > pt3_mut_count_obs #> pt3_mut_count_BS_G > pt3_mut_count_BS_NG
 
@@ -105,18 +93,10 @@ rule pt2_tnt_counter:
 rule pt3_mut_count_obs:
  output:
   "{pth}/{dir}/genic/bs0/bs0.{nod}.mu",
-<<<<<<< HEAD
   "{pth}/{dir}/nongenic/bs0/bs0.{nod}.mu"
  input:
   "{pth}/{dir}/genic/{nod}.rfd.COM.tnt_count",
   "{pth}/{dir}/nongenic/{nod}.rfd.COM.tnt_count",
-=======
-  "{pth}/{dir}/nongenic/bs0/bs0.{nod}.mu",
- input:
-  "{pth}/{dir}/genic/{nod}.rfd.COM.tnt_count",
-  "{pth}/{dir}/nongenic/{nod}.rfd.COM.tnt_count"
-  #expand("{pth}/{dir}/{reg}/{nod}.rfd{com}.tnt_count", reg=regions, nod=samples, com=combine, pth=config["PTH"], dir=config["DIR"]),
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
  params:
   BIN = config["BIN"],
   DIR = config["DIR"],
@@ -126,11 +106,8 @@ rule pt3_mut_count_obs:
   BS = config["BOOTSTRAP"]
  shell:
   """while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 0 1 0 genic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} ; while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 0 1 0 nongenic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} """
-<<<<<<< HEAD
 
 test =str(config["BOOTSTRAP"])
-=======
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
 
 rule pt3_mut_count_BS_G:
  output:
@@ -142,17 +119,10 @@ rule pt3_mut_count_BS_G:
   DIR = config["DIR"],
   RFD = config["RFD_LIST"],
   PTH = config["PTH"],
-<<<<<<< HEAD
   #boots = lambda wildcards : BOOTS[wildcards.bs],
   GENOME = config["GENOME"],
  shell:
   """ while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 1 1 {wildcards.bs} genic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} """
-=======
-  GENOME = config["GENOME"],
-  BS = config["BOOTSTRAP"]
- shell:
-  """ for x in $(seq 1 1 {params.BS}) ; do while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 1 1 $x genic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} ; done """
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
 
 rule pt3_mut_count_BS_NG:
  output:
@@ -164,14 +134,7 @@ rule pt3_mut_count_BS_NG:
   DIR = config["DIR"],
   RFD = config["RFD_LIST"],
   PTH = config["PTH"],
-<<<<<<< HEAD
   #boots = lambda wildcards : BOOTS[wildcards.bs],
   GENOME = config["GENOME"],
  shell:
   """ while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 1 1 {wildcards.bs} nongenic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} """
-=======
-  GENOME = config["GENOME"],
-  BS = config["BOOTSTRAP"]
- shell:
-  """ for x in $(seq 1 1 {params.BS}) ; do while read line ; do bits=($line) ; {params.BIN}/pt3_mut_count.sh ${{bits[0]}} ${{bits[1]}} ${{bits[2]}} 1 1 $x nongenic {wildcards.nod} {params.BIN} {params.PTH} {params.DIR} {params.GENOME} ; done < {params.RFD} ; done """
->>>>>>> e7d9b0b9231c08464b42ad3eb8fd3227d34915e7
